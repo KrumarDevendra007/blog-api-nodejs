@@ -1,16 +1,18 @@
 const express = require('express');
 const  mongoose = require('mongoose');
+const dotenv = require('dotenv');
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 const blogRouter = require('./view/blog.view')
 
 app.use(express.json());
 const mongooseDB = require('mongoose');
+dotenv.config();
 
-const uri = 'mongodb+srv://mjrajak47z:H3Pkg3GTHrbWmJDd@cluster0.ht39vu6.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 
 
-mongooseDB.connect(uri)
+
+mongooseDB.connect(process.env.MONGO)
 .then(()=>{
     console.log("BlogDatabase connected successfully");
 })
